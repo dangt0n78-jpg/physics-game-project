@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://daxshk0585oo0"]
+
+[ext_resource type="Script" uid="uid://db7s0yfpdkm5p" path="res://_scripts/lamp.gd" id="1_jgtaf"]
+[ext_resource type="Texture2D" uid="uid://dk6qjd4f4e47x" path="res://_assets/lamp.png" id="1_tac1r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3owqy"]
+radius = 70.45566
+
+[node name="lamp" type="Area2D" unique_id=1078655458]
+position = Vector2(352, -4)
+script = ExtResource("1_jgtaf")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=645471719]
+position = Vector2(131, 83)
+scale = Vector2(10.1875, 10.1875)
+texture = ExtResource("1_tac1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1384252925]
+position = Vector2(132, 71)
+shape = SubResource("CircleShape2D_3owqy")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=974507000]
+visible = false
+position = Vector2(-79.69629, -48.5)
+scale = Vector2(3.6500015, 1.25)
+points = PackedVector2Array(40.738693, 92.4, 72.79347, 119.600006)
+default_color = Color(0, 0, 0, 1)
+
+[node name="light" type="Polygon2D" parent="." unique_id=75230802]
+color = Color(1, 1, 0.36078432, 1)
+polygon = PackedVector2Array(66, 99, -69, 618, 137, 620, 347, 620, 180, 97)
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

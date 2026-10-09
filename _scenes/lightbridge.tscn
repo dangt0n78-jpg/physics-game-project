@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://byf03aixhx7os"]
+
+[node name="lightbridge" type="StaticBody2D" unique_id=1017073131]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=178490383]

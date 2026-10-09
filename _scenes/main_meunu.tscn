@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://xtqh7em83y76"]
+
+[ext_resource type="Script" uid="uid://kigo8vw75wwl" path="res://_scripts/main_meunu.gd" id="1_8oanf"]
+
+[node name="main meunu" type="Control" unique_id=477539334]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8oanf")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1577475475]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="." unique_id=239505811]
+layout_mode = 0
+offset_left = 349.0
+offset_top = 122.0
+offset_right = 774.0
+offset_bottom = 315.0
+theme_override_font_sizes/font_size = 64
+text = "Prison Escape"
+
+[node name="startbutton" type="Button" parent="." unique_id=1407780591]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 365.0
+offset_right = 711.0
+offset_bottom = 458.0
+theme_override_font_sizes/font_size = 32
+text = "START"
+
+[connection signal="pressed" from="startbutton" to="." method="_on_startbutton_pressed"]

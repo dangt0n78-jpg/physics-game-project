@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://6ktakviumql8"]
+
+[ext_resource type="PackedScene" uid="uid://b1hcbea3sase7" path="res://_scenes/player.tscn" id="1_76jr8"]
+[ext_resource type="PackedScene" uid="uid://d3oksgjnsfta1" path="res://_scenes/door.tscn" id="1_mg1it"]
+[ext_resource type="Script" uid="uid://cjkvg4tpgcb5q" path="res://_scripts/tamphancuc.gd" id="3_4h421"]
+[ext_resource type="PackedScene" uid="uid://daxshk0585oo0" path="res://_scenes/lamp.tscn" id="4_l20eo"]
+[ext_resource type="PackedScene" uid="uid://bv8nxa7leibcv" path="res://_scenes/spike.tscn" id="5_br8l7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3owqy"]
+distance = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
+size = Vector2(277, 29)
+
+[node name="level1" type="Node" unique_id=916071155]
+
+[node name="floor" type="StaticBody2D" parent="." unique_id=1956257032]
+position = Vector2(187, 316)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor" unique_id=1536040742]
+position = Vector2(-140, 296)
+shape = SubResource("WorldBoundaryShape2D_3owqy")
+
+[node name="floor2" type="StaticBody2D" parent="." unique_id=879518463]
+position = Vector2(937, 205)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor2" unique_id=1477945330]
+position = Vector2(76, 278)
+shape = SubResource("RectangleShape2D_3owqy")
+
+[node name="door" parent="floor2" unique_id=104540577 instance=ExtResource("1_mg1it")]
+position = Vector2(81, 205)
+
+[node name="player" parent="." unique_id=2005865122 instance=ExtResource("1_76jr8")]
+position = Vector2(54, 566)
+
+[node name="ui" type="CanvasLayer" parent="." unique_id=1525520176]
+
+[node name="Label" type="Label" parent="ui" unique_id=1947782827]
+offset_right = 266.0
+offset_bottom = 131.0
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_4h421")
+
+[node name="lamp" parent="." unique_id=1078655458 instance=ExtResource("4_l20eo")]
+position = Vector2(219, -3)
+
+[node name="spike" parent="." unique_id=1947088751 instance=ExtResource("5_br8l7")]
+z_index = -1
+position = Vector2(385, 559)
