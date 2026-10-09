@@ -1,5 +1,19 @@
 [gd_scene format=3 uid="uid://byf03aixhx7os"]
 
-[node name="lightbridge" type="StaticBody2D" unique_id=1017073131]
+[ext_resource type="Script" uid="uid://dljlfw30kodnj" path="res://_scripts/lightbridge.gd" id="1_jayox"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=178490383]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
+size = Vector2(279, 23)
+
+[node name="lightbridge" type="StaticBody2D" unique_id=1017073131]
+script = ExtResource("1_jayox")
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=449583255]
+offset_right = 279.0
+offset_bottom = 24.0
+color = Color(0, 0.6878645, 0.68912554, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1197022049]
+position = Vector2(139.5, 12.5)
+shape = SubResource("RectangleShape2D_3owqy")

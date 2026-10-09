@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cjkvg4tpgcb5q" path="res://_scripts/tamphancuc.gd" id="3_4h421"]
 [ext_resource type="PackedScene" uid="uid://daxshk0585oo0" path="res://_scenes/lamp.tscn" id="4_l20eo"]
 [ext_resource type="PackedScene" uid="uid://bv8nxa7leibcv" path="res://_scenes/spike.tscn" id="5_br8l7"]
+[ext_resource type="PackedScene" uid="uid://byf03aixhx7os" path="res://_scenes/lightbridge.tscn" id="6_wcqjb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3owqy"]
 distance = 1.0
@@ -52,3 +53,6 @@ position = Vector2(219, -3)
 [node name="spike" parent="." unique_id=1947088751 instance=ExtResource("5_br8l7")]
 z_index = -1
 position = Vector2(385, 559)
+
+[node name="lightbridge" parent="." unique_id=1017073131 instance=ExtResource("6_wcqjb")]
+position = Vector2(579, 516)
