@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://daxshk0585oo0"]
 
 [ext_resource type="Script" uid="uid://db7s0yfpdkm5p" path="res://_scripts/lamp.gd" id="1_jgtaf"]
-[ext_resource type="Texture2D" uid="uid://dk6qjd4f4e47x" path="res://_assets/lamp.png" id="1_tac1r"]
+[ext_resource type="Texture2D" uid="uid://dk6qjd4f4e47x" path="res://_assets/Lamp.png" id="1_tac1r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3owqy"]
 radius = 70.45566
 
 [node name="lamp" type="Area2D" unique_id=1078655458]
-position = Vector2(352, -4)
+position = Vector2(405, 15)
 script = ExtResource("1_jgtaf")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=645471719]
-position = Vector2(131, 83)
+position = Vector2(137, 167)
 scale = Vector2(10.1875, 10.1875)
 texture = ExtResource("1_tac1r")
 
@@ -28,7 +28,18 @@ points = PackedVector2Array(40.738693, 92.4, 72.79347, 119.600006)
 default_color = Color(0, 0, 0, 1)
 
 [node name="light" type="Polygon2D" parent="." unique_id=75230802]
+z_index = 10
+position = Vector2(-3.5442047, 0)
+scale = Vector2(0.95031255, 1)
 color = Color(1, 1, 0.36078432, 1)
-polygon = PackedVector2Array(66, 99, -69, 618, 137, 620, 347, 620, 180, 97)
+polygon = PackedVector2Array(20.56607, 93.99999, -93.90761, 1094.9999, 163.90233, 1096.9999, 411.18936, 1093.9999, 267.8531, 93.99999)
+
+[node name="rayleft" type="RayCast2D" parent="." unique_id=365083551]
+position = Vector2(21, 93)
+target_position = Vector2(-114, 1000)
+
+[node name="rayright" type="RayCast2D" parent="." unique_id=24458754]
+position = Vector2(252, 94)
+target_position = Vector2(132, 1000)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
