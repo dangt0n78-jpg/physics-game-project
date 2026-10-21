@@ -4,8 +4,9 @@ extends Area2D
 @onready var rayright: RayCast2D = $rayright
 @onready var light: Polygon2D = $light
 
+@export var timeleft :float= 5.0
 var is_active = true
-
+var degree :int= 180
 # Số lượng điểm quét ở đáy (30 điểm sẽ giúp mép ánh sáng ôm sát bục xanh)
 @export var ray_count: int = 30
 
@@ -35,9 +36,15 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 			if has_node("Line2D"):
 				$Line2D.show()
 			is_active = false
+			$timeleft.wait_time = timeleft
+			$timeleft.start()
+			$timeleftcounter.show()
 
 func _physics_process(delta: float) -> void:
 	update_light()
+	
+	if not is_active:
+		$timeleftcounter.text = str(int($timeleft.time_left))
 	
 	# Giữ nguyên cơ chế phân cực và is_active của bạn
 	if not is_active:
@@ -72,3 +79,9 @@ func update_light() -> void:
 			
 	# 3. Gán toàn bộ các điểm vào Polygon2D
 	light.polygon = points
+
+
+func _on_timeleft_timeout() -> void:
+	$Line2D.hide()
+	$timeleftcounter.hide()
+	is_active = true

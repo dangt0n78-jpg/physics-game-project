@@ -7,6 +7,8 @@
 size = Vector2(110, 112)
 
 [node name="door" type="Area2D" unique_id=104540577]
+z_index = -2
+collision_mask = 2
 script = ExtResource("1_s0mvb")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=743377508]

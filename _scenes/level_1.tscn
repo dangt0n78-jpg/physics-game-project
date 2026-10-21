@@ -3,42 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://b1hcbea3sase7" path="res://_scenes/player.tscn" id="1_76jr8"]
 [ext_resource type="PackedScene" uid="uid://d3oksgjnsfta1" path="res://_scenes/door.tscn" id="1_mg1it"]
 [ext_resource type="Script" uid="uid://cjkvg4tpgcb5q" path="res://_scripts/tamphancuc.gd" id="3_4h421"]
+[ext_resource type="PackedScene" uid="uid://1kln71d5g52p" path="res://_scenes/wall.tscn" id="3_l20eo"]
 [ext_resource type="PackedScene" uid="uid://daxshk0585oo0" path="res://_scenes/lamp.tscn" id="4_l20eo"]
 [ext_resource type="PackedScene" uid="uid://bv8nxa7leibcv" path="res://_scenes/spike.tscn" id="5_br8l7"]
-[ext_resource type="PackedScene" uid="uid://byf03aixhx7os" path="res://_scenes/trapdoor.tscn" id="6_wcqjb"]
+[ext_resource type="PackedScene" uid="uid://f4rfmuth5j7o" path="res://_scenes/key.tscn" id="7_mfg0b"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3owqy"]
-distance = 1.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
-size = Vector2(277, 29)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_drsw1"]
 
 [node name="level1" type="Node" unique_id=916071155]
 
-[node name="floor" type="StaticBody2D" parent="." unique_id=1956257032]
-position = Vector2(187, 316)
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floor" unique_id=1536040742]
-position = Vector2(-140, 296)
-shape = SubResource("WorldBoundaryShape2D_3owqy")
-
-[node name="Sprite2D" type="Sprite2D" parent="floor" unique_id=42119220]
-
-[node name="floor2" type="StaticBody2D" parent="." unique_id=879518463]
-position = Vector2(937, 205)
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floor2" unique_id=1477945330]
-position = Vector2(76, 278)
-shape = SubResource("RectangleShape2D_3owqy")
-
-[node name="door" parent="floor2" unique_id=104540577 instance=ExtResource("1_mg1it")]
-position = Vector2(81, 205)
-
 [node name="player" parent="." unique_id=2005865122 instance=ExtResource("1_76jr8")]
 z_index = -1
-position = Vector2(601, 361)
+position = Vector2(74, 588)
 
 [node name="ui" type="CanvasLayer" parent="." unique_id=1525520176]
 
@@ -50,13 +26,36 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_4h421")
 
+[node name="floor" type="StaticBody2D" parent="." unique_id=493783441]
+position = Vector2(93, 637)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor" unique_id=681862699]
+shape = SubResource("WorldBoundaryShape2D_drsw1")
+
+[node name="wall" parent="." unique_id=1926131639 instance=ExtResource("3_l20eo")]
+position = Vector2(826, 503)
+scale = Vector2(5.06, 2.22)
+
+[node name="wall2" parent="." unique_id=416607052 instance=ExtResource("3_l20eo")]
+position = Vector2(231, 521)
+scale = Vector2(1, 0.385)
+
+[node name="wall3" parent="." unique_id=1495405804 instance=ExtResource("3_l20eo")]
+position = Vector2(388, 435)
+scale = Vector2(1, 0.375)
+
 [node name="lamp" parent="." unique_id=1078655458 instance=ExtResource("4_l20eo")]
-z_index = 1
-position = Vector2(365, 10)
+position = Vector2(606, 1)
 
 [node name="spike" parent="." unique_id=1947088751 instance=ExtResource("5_br8l7")]
-z_index = -1
-position = Vector2(385, 559)
+position = Vector2(686, 318)
 
-[node name="lightbridge" parent="." unique_id=1017073131 instance=ExtResource("6_wcqjb")]
-position = Vector2(579, 516)
+[node name="spike2" parent="." unique_id=459057897 instance=ExtResource("5_br8l7")]
+position = Vector2(805, 318)
+
+[node name="key" parent="." unique_id=879346263 instance=ExtResource("7_mfg0b")]
+position = Vector2(749, 197)
+
+[node name="door" parent="." unique_id=104540577 instance=ExtResource("1_mg1it")]
+position = Vector2(1032, 306)
