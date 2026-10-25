@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bb5n73m5psnaj"]
+
+[ext_resource type="PackedScene" uid="uid://1kln71d5g52p" path="res://_scenes/wall.tscn" id="1_kemef"]
+[ext_resource type="PackedScene" uid="uid://sw872ea0esqw" path="res://_scenes/light_trampoline.tscn" id="2_shtig"]
+[ext_resource type="PackedScene" uid="uid://cm8q3cpwhay2p" path="res://_scenes/void.tscn" id="3_vtt6a"]
+[ext_resource type="PackedScene" uid="uid://f4rfmuth5j7o" path="res://_scenes/key.tscn" id="4_x8ewk"]
+[ext_resource type="PackedScene" uid="uid://bv8nxa7leibcv" path="res://_scenes/spike.tscn" id="5_rk2m6"]
+[ext_resource type="PackedScene" uid="uid://d3oksgjnsfta1" path="res://_scenes/door.tscn" id="6_3mg2l"]
+[ext_resource type="PackedScene" uid="uid://b1hcbea3sase7" path="res://_scenes/player.tscn" id="7_rk2m6"]
+
+[node name="level_3" type="Node" unique_id=2078879970]
+
+[node name="player" parent="." unique_id=2005865122 instance=ExtResource("7_rk2m6")]
+position = Vector2(120, 349)
+
+[node name="wall" parent="." unique_id=1926131639 instance=ExtResource("1_kemef")]
+position = Vector2(119.00001, 516)
+scale = Vector2(1.8, 2.011)
+
+[node name="wall3" parent="." unique_id=319470327 instance=ExtResource("1_kemef")]
+position = Vector2(567.00006, 101)
+scale = Vector2(9.735, 1.566)
+
+[node name="wall2" parent="." unique_id=801146924 instance=ExtResource("1_kemef")]
+position = Vector2(1051, 537)
+scale = Vector2(1.545, 1.734)
+
+[node name="light_trampoline" parent="." unique_id=1863611134 instance=ExtResource("2_shtig")]
+position = Vector2(329, 578)
+
+[node name="light_trampoline2" parent="." unique_id=472784659 instance=ExtResource("2_shtig")]
+position = Vector2(600, 578)
+
+[node name="light_trampoline3" parent="." unique_id=1045415025 instance=ExtResource("2_shtig")]
+position = Vector2(867, 578)
+
+[node name="void" parent="." unique_id=1833454044 instance=ExtResource("3_vtt6a")]
+position = Vector2(391, 769)
+
+[node name="key" parent="." unique_id=879346263 instance=ExtResource("4_x8ewk")]
+position = Vector2(582, 312)
+
+[node name="spike" parent="." unique_id=1947088751 instance=ExtResource("5_rk2m6")]
+position = Vector2(410, 244)
+rotation = 3.1415927
+
+[node name="spike6" parent="." unique_id=1103776194 instance=ExtResource("5_rk2m6")]
+position = Vector2(290, 244)
+rotation = 3.1415927
+
+[node name="spike2" parent="." unique_id=992900491 instance=ExtResource("5_rk2m6")]
+position = Vector2(526, 244)
+rotation = 3.1415927
+
+[node name="spike3" parent="." unique_id=1096235449 instance=ExtResource("5_rk2m6")]
+position = Vector2(644, 245)
+rotation = 3.1415927
+
+[node name="spike4" parent="." unique_id=60914738 instance=ExtResource("5_rk2m6")]
+position = Vector2(763, 246)
+rotation = 3.1415927
+
+[node name="spike5" parent="." unique_id=1085936709 instance=ExtResource("5_rk2m6")]
+position = Vector2(882, 246)
+rotation = 3.1415927
+
+[node name="door" parent="." unique_id=104540577 instance=ExtResource("6_3mg2l")]
+position = Vector2(1075, 372)

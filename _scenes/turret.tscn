@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://iiw4i8q7mx7t"]
+
+[ext_resource type="Script" uid="uid://q122ronh2hmh" path="res://_scripts/turret.gd" id="1_dk052"]
+[ext_resource type="Texture2D" uid="uid://buc04kwumw2el" path="res://_assets/Light_Turret.png" id="1_g6kcl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3owqy"]
+radius = 54.08327
+
+[node name="turret" type="Area2D" unique_id=260134876]
+position = Vector2(0, 2)
+script = ExtResource("1_dk052")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=90733097]
+scale = Vector2(5, 5)
+texture = ExtResource("1_g6kcl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1685750197]
+shape = SubResource("CircleShape2D_3owqy")
+
+[node name="timeleft" type="Label" parent="." unique_id=351654300]
+offset_left = -19.0
+offset_top = -24.0
+offset_right = 21.0
+offset_bottom = 21.0
+theme_override_font_sizes/font_size = 32
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="degree" type="Label" parent="." unique_id=324679337]
+offset_left = -27.0
+offset_top = -24.0
+offset_right = 28.0
+offset_bottom = 21.0
+theme_override_font_sizes/font_size = 32
+text = "180"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="raylight" type="RayCast2D" parent="." unique_id=1491943447]
+target_position = Vector2(0, 1000)
+collision_mask = 3
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1525522116]
+color = Color(1, 0, 0, 1)

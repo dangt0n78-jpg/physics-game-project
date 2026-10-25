@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://b1hcbea3sase7" path="res://_scenes/player.tscn" id="1_76jr8"]
 [ext_resource type="PackedScene" uid="uid://d3oksgjnsfta1" path="res://_scenes/door.tscn" id="1_mg1it"]
-[ext_resource type="Script" uid="uid://cjkvg4tpgcb5q" path="res://_scripts/tamphancuc.gd" id="3_4h421"]
 [ext_resource type="PackedScene" uid="uid://1kln71d5g52p" path="res://_scenes/wall.tscn" id="3_l20eo"]
 [ext_resource type="PackedScene" uid="uid://daxshk0585oo0" path="res://_scenes/lamp.tscn" id="4_l20eo"]
 [ext_resource type="PackedScene" uid="uid://bv8nxa7leibcv" path="res://_scenes/spike.tscn" id="5_br8l7"]
@@ -15,16 +14,6 @@
 [node name="player" parent="." unique_id=2005865122 instance=ExtResource("1_76jr8")]
 z_index = -1
 position = Vector2(74, 588)
-
-[node name="ui" type="CanvasLayer" parent="." unique_id=1525520176]
-
-[node name="Label" type="Label" parent="ui" unique_id=1947782827]
-offset_right = 266.0
-offset_bottom = 131.0
-theme_override_font_sizes/font_size = 32
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("3_4h421")
 
 [node name="floor" type="StaticBody2D" parent="." unique_id=493783441]
 position = Vector2(93, 637)

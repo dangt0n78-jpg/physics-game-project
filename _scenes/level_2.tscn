@@ -3,6 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://1kln71d5g52p" path="res://_scenes/wall.tscn" id="1_7kxi3"]
 [ext_resource type="PackedScene" uid="uid://b1hcbea3sase7" path="res://_scenes/player.tscn" id="2_s8xcf"]
 [ext_resource type="PackedScene" uid="uid://bv8nxa7leibcv" path="res://_scenes/spike.tscn" id="3_s8xcf"]
+[ext_resource type="PackedScene" uid="uid://b4tc07k20oeq" path="res://_scenes/trapdoorlamp.tscn" id="4_kn5uq"]
+[ext_resource type="PackedScene" uid="uid://byf03aixhx7os" path="res://_scenes/trapdoor.tscn" id="5_fffv0"]
+[ext_resource type="PackedScene" uid="uid://daxshk0585oo0" path="res://_scenes/lamp.tscn" id="6_fffv0"]
+[ext_resource type="PackedScene" uid="uid://f4rfmuth5j7o" path="res://_scenes/key.tscn" id="7_tadps"]
+[ext_resource type="PackedScene" uid="uid://d3oksgjnsfta1" path="res://_scenes/door.tscn" id="8_l4tnh"]
 
 [node name="level_2" type="Node" unique_id=1409368271]
 
@@ -37,3 +42,27 @@ position = Vector2(836, 596)
 
 [node name="spike7" parent="." unique_id=44425788 instance=ExtResource("3_s8xcf")]
 position = Vector2(915, 596)
+
+[node name="trapdoor_lamp" parent="." unique_id=1078655458 instance=ExtResource("4_kn5uq")]
+position = Vector2(246, 16)
+
+[node name="trapdoor" parent="." unique_id=1017073131 node_paths=PackedStringArray("target_lamp") instance=ExtResource("5_fffv0")]
+position = Vector2(245, 310)
+target_lamp = NodePath("../trapdoor_lamp")
+target_degree = 5
+
+[node name="lamp" parent="." unique_id=31222925 instance=ExtResource("6_fffv0")]
+position = Vector2(627, 1)
+
+[node name="wall3" parent="." unique_id=391146421 instance=ExtResource("1_7kxi3")]
+position = Vector2(768, 364)
+scale = Vector2(2.03, 1)
+
+[node name="spike8" parent="." unique_id=312943449 instance=ExtResource("3_s8xcf")]
+position = Vector2(773, 255)
+
+[node name="key" parent="." unique_id=879346263 instance=ExtResource("7_tadps")]
+position = Vector2(771, 189)
+
+[node name="door" parent="." unique_id=104540577 instance=ExtResource("8_l4tnh")]
+position = Vector2(1063, 116)

@@ -12,17 +12,17 @@ script = ExtResource("1_jgtaf")
 timeleft = 6.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=645471719]
-position = Vector2(137, 167)
+position = Vector2(137, 73.999985)
 scale = Vector2(10.1875, 10.1875)
 texture = ExtResource("1_tac1r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1384252925]
-position = Vector2(132, 71)
+position = Vector2(139, 71)
 shape = SubResource("CircleShape2D_3owqy")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=974507000]
 visible = false
-position = Vector2(-79.69629, -48.5)
+position = Vector2(-64, -74)
 scale = Vector2(3.6500015, 1.25)
 points = PackedVector2Array(40.738693, 92.4, 72.79347, 119.600006)
 default_color = Color(0, 0, 0, 1)
@@ -44,15 +44,25 @@ target_position = Vector2(132, 1000)
 
 [node name="timeleft" type="Timer" parent="." unique_id=362654945]
 
-[node name="timeleftcounter" type="Label" parent="." unique_id=1567715408]
-visible = false
-offset_left = 48.0
-offset_top = 21.0
-offset_right = 228.0
-offset_bottom = 114.0
+[node name="timeleft2" type="Label" parent="." unique_id=1567715408]
+offset_left = 154.0
+offset_top = -9.0
+offset_right = 262.0
+offset_bottom = 84.0
 theme_override_font_sizes/font_size = 32
 text = "
-"
+5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="degree" type="Label" parent="." unique_id=558063297]
+offset_left = 41.0
+offset_top = -9.0
+offset_right = 149.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 32
+text = "
+180"
 horizontal_alignment = 1
 vertical_alignment = 1
 

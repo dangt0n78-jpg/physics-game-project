@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dofp410x8r3fq"]
+
+[ext_resource type="PackedScene" uid="uid://1kln71d5g52p" path="res://_scenes/wall.tscn" id="1_qvo07"]
+[ext_resource type="PackedScene" uid="uid://d3oksgjnsfta1" path="res://_scenes/door.tscn" id="2_ievmp"]
+[ext_resource type="PackedScene" uid="uid://iiw4i8q7mx7t" path="res://_scenes/turret.tscn" id="3_vnbvv"]
+[ext_resource type="PackedScene" uid="uid://b1hcbea3sase7" path="res://_scenes/player.tscn" id="4_80mtb"]
+[ext_resource type="PackedScene" uid="uid://f4rfmuth5j7o" path="res://_scenes/key.tscn" id="5_n3iod"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3owqy"]
+
+[node name="level_4" type="Node" unique_id=955085329]
+
+[node name="wall" parent="." unique_id=1926131639 instance=ExtResource("1_qvo07")]
+position = Vector2(181, 234)
+scale = Vector2(2.85, 3.665)
+
+[node name="wall2" parent="." unique_id=263012131 instance=ExtResource("1_qvo07")]
+position = Vector2(969, 236.00002)
+scale = Vector2(2.85, 3.665)
+
+[node name="wall3" parent="." unique_id=1867355575 instance=ExtResource("1_qvo07")]
+position = Vector2(585, 232.00002)
+scale = Vector2(0.865, 3.665)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1806299215]
+position = Vector2(97, 654)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1737002974]
+shape = SubResource("WorldBoundaryShape2D_3owqy")
+
+[node name="door" parent="." unique_id=104540577 instance=ExtResource("2_ievmp")]
+position = Vector2(1053, 591)
+
+[node name="turret" parent="." unique_id=260134876 instance=ExtResource("3_vnbvv")]
+position = Vector2(454, 193)
+target_degree = 45
+
+[node name="turret2" parent="." unique_id=436888713 instance=ExtResource("3_vnbvv")]
+position = Vector2(718, 191)
+
+[node name="player" parent="." unique_id=2005865122 instance=ExtResource("4_80mtb")]
+position = Vector2(85, 609)
+
+[node name="key" parent="." unique_id=879346263 instance=ExtResource("5_n3iod")]
+position = Vector2(585, 559)

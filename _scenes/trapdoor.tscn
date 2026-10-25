@@ -1,18 +1,24 @@
 [gd_scene format=3 uid="uid://byf03aixhx7os"]
 
 [ext_resource type="Script" uid="uid://dljlfw30kodnj" path="res://_scripts/lightbridge.gd" id="1_jayox"]
+[ext_resource type="Texture2D" uid="uid://bw74t3a435gn1" path="res://_assets/Trapdoor.png" id="2_i0qts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
 size = Vector2(279, 23)
 
 [node name="trapdoor" type="StaticBody2D" unique_id=1017073131]
+collision_layer = 3
 script = ExtResource("1_jayox")
-metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=449583255]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1015989072]
+position = Vector2(139.99998, 13)
+scale = Vector2(6.958333, 4.8125)
+texture = ExtResource("2_i0qts")
+
+[node name="Label" type="Label" parent="." unique_id=1929380239]
 offset_right = 279.0
-offset_bottom = 24.0
-color = Color(0, 0.6878645, 0.68912554, 1)
+offset_bottom = 23.0
+text = "90 - 100"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1197022049]
 position = Vector2(139.5, 12.5)
