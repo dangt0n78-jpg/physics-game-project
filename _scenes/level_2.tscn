@@ -1564,7 +1564,7 @@ target_degree = 5
 position = Vector2(774, 40.000008)
 
 [node name="key" parent="." unique_id=879346263 instance=ExtResource("7_tadps")]
-position = Vector2(771, 189)
+position = Vector2(763, 161.00003)
 
 [node name="door" parent="." unique_id=104540577 instance=ExtResource("8_l4tnh")]
 position = Vector2(1055, 129)

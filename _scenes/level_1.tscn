@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://6ktakviumql8"]
 
 [ext_resource type="PackedScene" uid="uid://b1hcbea3sase7" path="res://_scenes/player.tscn" id="1_76jr8"]
+[ext_resource type="Script" uid="uid://2it3g6i1604k" path="res://_scripts/level_1.gd" id="1_mfg0b"]
 [ext_resource type="PackedScene" uid="uid://d3oksgjnsfta1" path="res://_scenes/door.tscn" id="1_mg1it"]
 [ext_resource type="PackedScene" uid="uid://daxshk0585oo0" path="res://_scenes/lamp.tscn" id="4_l20eo"]
 [ext_resource type="PackedScene" uid="uid://bv8nxa7leibcv" path="res://_scenes/spike.tscn" id="5_br8l7"]
@@ -1546,6 +1547,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_mfg0b")
 
 [node name="level1" type="Node" unique_id=916071155]
+script = ExtResource("1_mfg0b")
 
 [node name="player" parent="." unique_id=2005865122 instance=ExtResource("1_76jr8")]
 z_index = -1
@@ -1583,3 +1585,25 @@ tile_set = SubResource("TileSet_qbdty")
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=672552915]
 tile_map_data = PackedByteArray("AAANAB4AAAAGAA0AAAAOAB4AAAAHAA0AAAAPAB4AAAAIAA0AAAAQAB4AAAAJAA0AAAARAB4AAAAKAA0AAAASAB4AAAALAA0AAAANAB0AAAAGAAgAAAAOAB0AAAAHAAgAAAAPAB0AAAAIAAgAAAAQAB0AAAAJAAgAAAARAB0AAAAKAAgAAAASAB0AAAALAAgAAAAXABgAAAAGAAgAAAAYABgAAAAHAAgAAAAZABgAAAAIAAgAAAAaABgAAAAJAAgAAAAbABgAAAAKAAgAAAAcABgAAAALAAgAAAAXABkAAAAGAA0AAAAYABkAAAAHAA0AAAAZABkAAAAIAA0AAAAaABkAAAAJAA0AAAAbABkAAAAKAA0AAAAcABkAAAALAA0AAAA=")
 tile_set = SubResource("TileSet_auskg")
+
+[node name="Label" type="Label" parent="." unique_id=1653115856]
+offset_left = 25.0
+offset_top = 1.0
+offset_right = 327.0
+offset_bottom = 208.0
+theme_override_font_sizes/font_size = 32
+text = "A, D TO MOVE
+SPACEBAR TO JUMP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1067072287]
+offset_left = 807.0
+offset_top = 17.0
+offset_right = 1143.0
+offset_bottom = 150.0
+text = "CLICK THE LAMP
+
+Q/E TO INCREASE / DECREASE
+
+CLICKOUT OF THE LAMP AFTER YOU ADJUST"

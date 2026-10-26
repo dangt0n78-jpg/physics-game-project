@@ -23,15 +23,36 @@ var max_bottom_left: Vector2
 var max_bottom_right: Vector2
 
 func _ready() -> void:
+	# 1. Quy đổi chính xác vị trí các đỉnh Polygon2D từ Editor (bao gồm cả Scale, Position, Offset)
+	var editor_points: Array[Vector2] = []
+	for p in light.polygon:
+		editor_points.append(to_local(light.to_global(p + light.offset)))
+	
+	# 2. Đưa Transform của light và rayleft về chuẩn (1:1) với node gốc lamp
 	light.position = Vector2.ZERO
 	light.offset = Vector2.ZERO
+	light.rotation = 0.0
+	light.scale = Vector2.ONE
 	
-	if light.polygon.size() >= 2:
-		top_left_offset = light.polygon[0]
-		top_right_offset = light.polygon[-1]
+	rayleft.rotation = 0.0
+	rayleft.scale = Vector2.ONE
 	
-	max_bottom_left = rayleft.position + rayleft.target_position
-	max_bottom_right = rayright.position + rayright.target_position
+	# 3. Tự động lấy 2 đỉnh miệng đèn (ở trên) và 2 đỉnh đáy (ở dưới) theo đúng hình bạn vẽ
+	if editor_points.size() >= 4:
+		# Sắp xếp từ cao xuống thấp (theo trục Y tăng dần)
+		editor_points.sort_custom(func(a: Vector2, b: Vector2) -> bool: return a.y < b.y)
+		
+		# 2 điểm cao nhất là miệng đèn Trên-Trái và Trên-Phải
+		var top_pts = [editor_points[0], editor_points[1]]
+		top_pts.sort_custom(func(a: Vector2, b: Vector2) -> bool: return a.x < b.x)
+		top_left_offset = top_pts[0]
+		top_right_offset = top_pts[1]
+		
+		# Các điểm còn lại ở dưới đáy: lấy điểm ngoài cùng bên trái và ngoài cùng bên phải
+		var bottom_pts = editor_points.slice(2)
+		bottom_pts.sort_custom(func(a: Vector2, b: Vector2) -> bool: return a.x < b.x)
+		max_bottom_left = bottom_pts[0]
+		max_bottom_right = bottom_pts[-1]
 	
 	# Đảm bảo Timer chỉ đếm ngược 1 lần mỗi khi kích hoạt
 	timer.one_shot = true

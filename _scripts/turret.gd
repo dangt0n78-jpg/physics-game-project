@@ -7,7 +7,6 @@ extends Area2D
 @onready var raylight: RayCast2D = $raylight
 @onready var poly: Polygon2D = $Polygon2D
 
-# Khoảng góc phân cực an toàn: [target_degree - tolerance, target_degree + tolerance]
 @export_range(0, 180) var target_degree: int = 90:
 	set(value):
 		target_degree = value
@@ -18,7 +17,6 @@ extends Area2D
 		tolerance = value
 		update_range_text()
 
-# Thời gian hiệu lực của tấm phân cực và thông số tia laser
 @export var duration: float = 5.0
 @export var laser_width: float = 16.0
 @export var rotation_speed: float = 2.0
@@ -35,12 +33,9 @@ var player: Node2D = null
 
 func _ready() -> void:
 	update_range_text()
-	
-	# Nếu đang ở trong màn hình thiết kế Editor thì chỉ hiện số độ, không chạy logic bắn
 	if Engine.is_editor_hint():
 		return
 
-	# 1. Tự động tạo Timer đếm ngược tấm phân cực
 	timer = get_node_or_null("Timer")
 	if not timer:
 		timer = Timer.new()
@@ -56,24 +51,24 @@ func _ready() -> void:
 	if not mouse_exited.is_connected(_on_mouse_exited):
 		mouse_exited.connect(_on_mouse_exited)
 
-	# 2. Đảm bảo RayCast2D quét trúng cả Tường (Layer 1) và Player (Layer 2)
+	# 1. Tắt hit_from_inside để không bị kẹt vào trần nhà nơi gắn Turret
 	raylight.enabled = true
-	raylight.set_collision_mask_value(1, true)
-	raylight.set_collision_mask_value(2, true)
+	raylight.hit_from_inside = false
+	raylight.collide_with_bodies = true
+	
+	# Quét tất cả các Layer phổ biến (1, 2, 3) để chắc chắn bắt trúng cả TileMap và Player
+	raylight.collision_mask = 1 | 2 | 4
 
-	# 3. Đặt gốc và Z-Index cho tia laser
 	poly.position = Vector2.ZERO
 	poly.offset = Vector2.ZERO
 	poly.z_as_relative = false
 	poly.z_index = 50
 	
-	# HIỆN sẵn khoảng độ yêu cầu ngay khi vào màn chơi
 	degree_label.show()
 	time_label.hide()
 	
 	find_player()
 
-# Hàm cập nhật chữ hiển thị khoảng độ "min - max"
 func update_range_text() -> void:
 	var lbl = get_node_or_null("degree")
 	if lbl:
@@ -105,7 +100,7 @@ func _input(event: InputEvent) -> void:
 			if current_state == State.EDITING:
 				current_state = State.ACTIVE
 				time_label.show()
-				degree_label.hide() # Ẩn góc đi để nhường chỗ hiện số giây đếm ngược
+				degree_label.hide()
 				timer.wait_time = duration
 				timer.start()
 
@@ -121,31 +116,46 @@ func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 
-	# 1. Giữ chữ luôn nằm ngang dễ đọc khi súng xoay
 	degree_label.rotation = -rotation
 	time_label.rotation = -rotation
 	
 	match current_state:
 		State.IDLE:
-			# Khi chưa click vào súng: Hiện khoảng độ yêu cầu (VD: "85 - 95")
 			update_range_text()
 		State.EDITING:
-			# Khi đang chỉnh: Hiện góc phân cực hiện tại của người chơi
 			current_degree = clamp(int(Global.phancuc), 0, 180)
 			degree_label.text = str(current_degree)
 		State.ACTIVE:
-			# Khi đã áp kính: Hiện thời gian đếm ngược
 			time_label.text = str(int(ceil(timer.time_left)))
 
-	# 2. Xoay Turret nhìn về phía Player
+	# CHỈ xoay nhìn theo Player khi tia ngắm từ mũi súng tới Player KHÔNG đụng phải TileMap
 	if not is_instance_valid(player):
 		find_player()
-	if is_instance_valid(player):
+	if is_instance_valid(player) and can_see_player():
 		var target_angle = (player.global_position - global_position).angle() - PI / 2.0
 		rotation = rotate_toward(rotation, target_angle, rotation_speed * delta)
 
-	# 3. Bắn và cập nhật hình dáng tia laser
 	check_raylight_and_fire()
+
+# Kiểm tra đường ngắm từ Turret đến Player có bị TileMapLayer cản không
+func can_see_player() -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var dir_to_player = (player.global_position - global_position).normalized()
+	
+	# Bắt đầu tia cách tâm Turret 24px về phía Player để thoát khỏi viên gạch trần nhà
+	var start_pos = global_position + dir_to_player * 24.0
+	
+	var query = PhysicsRayQueryParameters2D.create(start_pos, player.global_position, raylight.collision_mask)
+	query.exclude = [get_rid()]
+	query.hit_from_inside = false
+	query.collide_with_bodies = true
+	
+	var result = space_state.intersect_ray(query)
+	if result.is_empty():
+		return false
+		
+	# Nếu vật đầu tiên chạm phải là Player -> Nhìn thấy! Nếu chạm TileMapLayer1 -> Bị tường che!
+	return is_player(result.collider)
 
 func check_raylight_and_fire() -> void:
 	raylight.force_raycast_update()
@@ -163,6 +173,7 @@ func check_raylight_and_fire() -> void:
 	var collider = raylight.get_collider()
 	var hit_dist = to_local(raylight.get_collision_point()).length()
 	
+	# Nếu chạm TileMapLayer (tường) -> Cắt ngắn tia laser dừng ngay tại mặt tường
 	if not is_player(collider):
 		if always_show_laser:
 			poly.show()
@@ -228,7 +239,6 @@ func kill_player(player_node: Object) -> void:
 func _on_timer_timeout() -> void:
 	current_state = State.IDLE
 	time_label.hide()
-	# Khi hết giờ, hiện lại khoảng độ yêu cầu trên súng
 	degree_label.show()
 	update_range_text()
 

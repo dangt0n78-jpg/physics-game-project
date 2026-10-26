@@ -24,6 +24,10 @@ Global="*uid://yuhhjn1l7k66"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[global_group]
+
+player=""
+
 [input]
 
 decrease={
