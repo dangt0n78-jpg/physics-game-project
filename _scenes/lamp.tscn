@@ -1,66 +1,68 @@
 [gd_scene format=3 uid="uid://daxshk0585oo0"]
 
 [ext_resource type="Script" uid="uid://db7s0yfpdkm5p" path="res://_scripts/lamp.gd" id="1_jgtaf"]
-[ext_resource type="Texture2D" uid="uid://dk6qjd4f4e47x" path="res://_assets/Lamp.png" id="1_tac1r"]
+[ext_resource type="Texture2D" uid="uid://dk6qjd4f4e47x" path="res://_assets/lamp.png" id="1_tac1r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3owqy"]
-radius = 70.45566
+radius = 10.022198
 
 [node name="lamp" type="Area2D" unique_id=1078655458]
-position = Vector2(355, 3)
 script = ExtResource("1_jgtaf")
 timeleft = 6.0
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=645471719]
-position = Vector2(137, 73.999985)
-scale = Vector2(10.1875, 10.1875)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=337360926]
+texture_filter = 1
+scale = Vector2(3, 3)
 texture = ExtResource("1_tac1r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1384252925]
-position = Vector2(139, 71)
+position = Vector2(0, 4)
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_3owqy")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=974507000]
 visible = false
-position = Vector2(-64, -74)
-scale = Vector2(3.6500015, 1.25)
-points = PackedVector2Array(40.738693, 92.4, 72.79347, 119.600006)
+position = Vector2(-96, -47)
+scale = Vector2(1.7155558, 0.44036657)
+points = PackedVector2Array(40.738693, 92.4, 59.219917, 108.08221, 72.79347, 119.600006)
 default_color = Color(0, 0, 0, 1)
 
 [node name="light" type="Polygon2D" parent="." unique_id=75230802]
 z_index = 10
-position = Vector2(-3.5442047, 0)
-scale = Vector2(0.95031255, 1)
+position = Vector2(-65, -202)
+scale = Vector2(3, 3)
 color = Color(1, 1, 0.36078432, 1)
-polygon = PackedVector2Array(20.56607, 93.99999, -93.90761, 1094.9999, 163.90233, 1096.9999, 411.18936, 1093.9999, 267.8531, 93.99999)
+polygon = PackedVector2Array(16.836569, 71.333336, -140.65549, 461.33334, 22.448757, 463.33334, 184.50073, 462.33334, 26.6579, 71.333336)
 
 [node name="rayleft" type="RayCast2D" parent="." unique_id=365083551]
-position = Vector2(21, 93)
-target_position = Vector2(-114, 1000)
+position = Vector2(-12, 12)
+scale = Vector2(3, 3)
+target_position = Vector2(-150, 390.6667)
 
 [node name="rayright" type="RayCast2D" parent="." unique_id=24458754]
-position = Vector2(252, 94)
-target_position = Vector2(132, 1000)
+position = Vector2(12, 12)
+scale = Vector2(3, 3)
+target_position = Vector2(150, 390.667)
 
 [node name="timeleft" type="Timer" parent="." unique_id=362654945]
 
 [node name="timeleft2" type="Label" parent="." unique_id=1567715408]
-offset_left = 154.0
-offset_top = -9.0
-offset_right = 262.0
-offset_bottom = 84.0
-theme_override_font_sizes/font_size = 32
+offset_left = 37.0
+offset_top = -25.0
+offset_right = 51.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 16
 text = "
 5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="degree" type="Label" parent="." unique_id=558063297]
-offset_left = 41.0
-offset_top = -9.0
-offset_right = 149.0
-offset_bottom = 84.0
-theme_override_font_sizes/font_size = 32
+offset_left = -67.0
+offset_top = -25.0
+offset_right = -33.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 16
 text = "
 180"
 horizontal_alignment = 1

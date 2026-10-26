@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d14h1d4dbl3sh" path="res://_scripts/light_trampoline.gd" id="1_kdl5m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
-size = Vector2(158, 14)
+size = Vector2(120, 15)
 
 [node name="light_trampoline" type="Area2D" unique_id=1863611134]
 collision_layer = 3
@@ -12,32 +12,30 @@ collision_mask = 3
 script = ExtResource("1_kdl5m")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=710670010]
-scale = Vector2(5, 4)
+scale = Vector2(5, 5)
 texture = ExtResource("1_2cvum")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1487392374]
-position = Vector2(0, -21)
+position = Vector2(0, -27.5)
 shape = SubResource("RectangleShape2D_3owqy")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1965542433]
-visible = false
+position = Vector2(15, -7)
 color = Color(0, 0.78039217, 0.8862745, 1)
-polygon = PackedVector2Array(-60, -28, 60, -28, 60, -16, -60, -16)
+polygon = PackedVector2Array(-75, -28, 45, -28, 45, -13, -75, -13)
 
 [node name="degree" type="Label" parent="." unique_id=1459954507]
-offset_left = -68.0
-offset_top = -4.0
-offset_right = -28.0
-offset_bottom = 19.0
+offset_left = -88.0
+offset_top = -23.0
+offset_right = -48.0
 text = "180"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="timeleft" type="Label" parent="." unique_id=1457923130]
-offset_left = 34.0
-offset_top = -3.0
-offset_right = 74.0
-offset_bottom = 20.0
+offset_left = 39.0
+offset_top = -23.0
+offset_right = 79.0
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1

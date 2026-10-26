@@ -3,19 +3,21 @@
 [ext_resource type="Texture2D" uid="uid://cpf3rvyvadhnh" path="res://_assets/key.png" id="1_n7kt6"]
 [ext_resource type="Script" uid="uid://dvqj0640p1lep" path="res://_scripts/key.gd" id="1_yd7kt"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3owqy"]
-radius = 39.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1vivr"]
+radius = 5.3333335
+height = 24.666668
 
 [node name="key" type="Area2D" unique_id=879346263]
+scale = Vector2(3, 3)
 collision_mask = 2
 script = ExtResource("1_yd7kt")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=702490966]
-scale = Vector2(2.715, 2.715)
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1269058686]
 texture = ExtResource("1_n7kt6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=728312881]
-shape = SubResource("CircleShape2D_3owqy")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_1vivr")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

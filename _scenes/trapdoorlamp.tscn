@@ -1,67 +1,64 @@
 [gd_scene format=3 uid="uid://b4tc07k20oeq"]
 
 [ext_resource type="Script" uid="uid://brwc5el6b0khd" path="res://_scripts/trapdoorlamp.gd" id="1_jk1x6"]
-[ext_resource type="Texture2D" uid="uid://dk6qjd4f4e47x" path="res://_assets/Lamp.png" id="2_y5hb8"]
+[ext_resource type="Texture2D" uid="uid://dk6qjd4f4e47x" path="res://_assets/lamp.png" id="2_y5hb8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3owqy"]
-radius = 70.45566
+radius = 29.017237
 
 [node name="trapdoor_lamp" type="Area2D" unique_id=1078655458]
-position = Vector2(295, 5)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_jk1x6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=645471719]
-position = Vector2(130, 88.999985)
-scale = Vector2(10.1875, 10.1875)
+scale = Vector2(3, 3)
 texture = ExtResource("2_y5hb8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1384252925]
-position = Vector2(132, 71)
 shape = SubResource("CircleShape2D_3owqy")
 
 [node name="Line2D" type="Line2D" parent="." unique_id=974507000]
 visible = false
-position = Vector2(-79.69629, -48.5)
-scale = Vector2(3.6500015, 1.25)
+position = Vector2(-86.000015, -57)
+scale = Vector2(1.5330718, 0.50847447)
 points = PackedVector2Array(40.738693, 92.4, 72.79347, 119.600006)
 default_color = Color(0, 0, 0, 1)
 
 [node name="light" type="Polygon2D" parent="." unique_id=75230802]
-position = Vector2(-6.0000153, 52)
-scale = Vector2(0.95031255, 1)
+position = Vector2(-51.042603, -63)
+scale = Vector2(0.35011518, 1)
 color = Color(0, 0.78039217, 0.8862745, 0.37254903)
 polygon = PackedVector2Array(105.80118, 74.99999, 105.80118, 1103.9999, 185.77484, 1104.9999, 184.7226, 74.99999)
 
 [node name="timeleft" type="Timer" parent="." unique_id=362654945]
 
 [node name="timeleft2" type="Label" parent="." unique_id=1567715408]
-offset_left = 134.0
-offset_top = -2.0
-offset_right = 247.0
-offset_bottom = 91.0
-theme_override_font_sizes/font_size = 32
+offset_left = 31.0
+offset_top = -31.0
+offset_right = 54.0
+offset_bottom = 18.0
+theme_override_font_sizes/font_size = 16
 text = "
 5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="degree" type="Label" parent="." unique_id=1431381926]
-offset_left = 61.0
-offset_top = 44.0
-offset_right = 116.0
-offset_bottom = 89.0
-theme_override_font_sizes/font_size = 32
+offset_left = -66.0
+offset_top = -6.0
+offset_right = -38.0
+offset_bottom = 17.0
+theme_override_font_sizes/font_size = 16
 text = "180"
 horizontal_alignment = 1
 
 [node name="rayleft" type="RayCast2D" parent="." unique_id=499355481]
-position = Vector2(95, 126)
+position = Vector2(-13, 12)
 target_position = Vector2(0, 1000)
 
 [node name="rayright" type="RayCast2D" parent="." unique_id=1160783703]
-position = Vector2(170, 128)
+position = Vector2(13, 12)
 target_position = Vector2(0, 1000)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
