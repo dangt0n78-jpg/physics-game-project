@@ -29,6 +29,7 @@ var current_degree: int = 180
 var is_mouse_in_area: bool = false
 var is_killing: bool = false
 var timer: Timer
+var sight_ray: RayCast2D # Tia chuyên dụng kiểm tra tường chắn
 var player: Node2D = null
 
 func _ready() -> void:
@@ -36,6 +37,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 
+	# 1. Tạo Timer
 	timer = get_node_or_null("Timer")
 	if not timer:
 		timer = Timer.new()
@@ -51,13 +53,24 @@ func _ready() -> void:
 	if not mouse_exited.is_connected(_on_mouse_exited):
 		mouse_exited.connect(_on_mouse_exited)
 
-	# 1. Tắt hit_from_inside để không bị kẹt vào trần nhà nơi gắn Turret
+	# 2. Cấu hình raylight (tia bắn laser)
 	raylight.enabled = true
+	raylight.exclude_parent = true
 	raylight.hit_from_inside = false
 	raylight.collide_with_bodies = true
-	
-	# Quét tất cả các Layer phổ biến (1, 2, 3) để chắc chắn bắt trúng cả TileMap và Player
-	raylight.collision_mask = 1 | 2 | 4
+	raylight.collide_with_areas = false
+	# Quét tất cả các Layer để không bao giờ bỏ sót TileMapLayer hoặc Player
+	raylight.collision_mask = 0xFFFFFFFF
+
+	# 3. Tạo tia kiểm tra tầm nhìn (sight_ray) để không nhìn xuyên tường
+	sight_ray = RayCast2D.new()
+	sight_ray.enabled = true
+	sight_ray.exclude_parent = true
+	sight_ray.hit_from_inside = false
+	sight_ray.collide_with_bodies = true
+	sight_ray.collide_with_areas = false
+	sight_ray.collision_mask = 0xFFFFFFFF
+	add_child(sight_ray)
 
 	poly.position = Vector2.ZERO
 	poly.offset = Vector2.ZERO
@@ -83,8 +96,6 @@ func find_player() -> void:
 			if child is CharacterBody2D:
 				player = child
 				break
-	if player and player is CollisionObject2D:
-		raylight.collision_mask |= player.collision_layer
 
 func _input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
@@ -128,7 +139,7 @@ func _physics_process(delta: float) -> void:
 		State.ACTIVE:
 			time_label.text = str(int(ceil(timer.time_left)))
 
-	# CHỈ xoay nhìn theo Player khi tia ngắm từ mũi súng tới Player KHÔNG đụng phải TileMap
+	# CHỈ xoay súng khi tia sight_ray chạm trực tiếp vào Player mà không vướng tường
 	if not is_instance_valid(player):
 		find_player()
 	if is_instance_valid(player) and can_see_player():
@@ -137,25 +148,17 @@ func _physics_process(delta: float) -> void:
 
 	check_raylight_and_fire()
 
-# Kiểm tra đường ngắm từ Turret đến Player có bị TileMapLayer cản không
+# Dùng RayCast2D phụ bắn thẳng tới vị trí của Player để kiểm tra vật cản
 func can_see_player() -> bool:
-	var space_state = get_world_2d().direct_space_state
-	var dir_to_player = (player.global_position - global_position).normalized()
+	sight_ray.target_position = to_local(player.global_position)
+	sight_ray.force_raycast_update()
 	
-	# Bắt đầu tia cách tâm Turret 24px về phía Player để thoát khỏi viên gạch trần nhà
-	var start_pos = global_position + dir_to_player * 24.0
-	
-	var query = PhysicsRayQueryParameters2D.create(start_pos, player.global_position, raylight.collision_mask)
-	query.exclude = [get_rid()]
-	query.hit_from_inside = false
-	query.collide_with_bodies = true
-	
-	var result = space_state.intersect_ray(query)
-	if result.is_empty():
+	if not sight_ray.is_colliding():
 		return false
 		
-	# Nếu vật đầu tiên chạm phải là Player -> Nhìn thấy! Nếu chạm TileMapLayer1 -> Bị tường che!
-	return is_player(result.collider)
+	var first_hit = sight_ray.get_collider()
+	# Nếu tia chạm TileMapLayer trước -> first_hit là TileMapLayer -> Trả về false (Bị khuất tầm nhìn!)
+	return is_player(first_hit)
 
 func check_raylight_and_fire() -> void:
 	raylight.force_raycast_update()
@@ -173,7 +176,7 @@ func check_raylight_and_fire() -> void:
 	var collider = raylight.get_collider()
 	var hit_dist = to_local(raylight.get_collision_point()).length()
 	
-	# Nếu chạm TileMapLayer (tường) -> Cắt ngắn tia laser dừng ngay tại mặt tường
+	# Nếu tia laser đụng phải Tường (TileMapLayer) -> Chặn đứng tại mặt tường, KHÔNG giết Player
 	if not is_player(collider):
 		if always_show_laser:
 			poly.show()
@@ -183,6 +186,7 @@ func check_raylight_and_fire() -> void:
 			poly.hide()
 		return
 		
+	# Chỉ khi vật đầu tiên đụng phải là Player mới xử lý bắn trúng
 	poly.show()
 	
 	if is_polarized_safely():
@@ -202,6 +206,10 @@ func check_raylight_and_fire() -> void:
 		kill_player(collider)
 
 func is_player(obj: Object) -> bool:
+	if obj == null:
+		return false
+	if obj is TileMapLayer:
+		return false
 	if obj is CharacterBody2D:
 		return true
 	if obj is Node and (obj.name.to_lower().contains("player") or obj.is_in_group("player")):
