@@ -1649,3 +1649,12 @@ tile_set = SubResource("TileSet_633uv")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=547426328]
 tile_set = SubResource("TileSet_a8ltm")
+
+[node name="Label" type="Label" parent="." unique_id=1565963948]
+offset_left = 103.0
+offset_top = 44.0
+offset_right = 1038.0
+offset_bottom = 106.0
+theme_override_font_sizes/font_size = 32
+text = "ẤN VÀO TRAMPOLINE VÀ TĂNG GIẢM ĐỘ NẢY THEO GÓC ĐỘ "
+horizontal_alignment = 1

@@ -1638,11 +1638,11 @@ tile_set = SubResource("TileSet_y236w")
 tile_set = SubResource("TileSet_erd5g")
 
 [node name="Label" type="Label" parent="." unique_id=216138833]
-offset_left = 204.0
-offset_top = 18.0
-offset_right = 833.0
-offset_bottom = 111.0
+offset_left = 174.0
+offset_top = 12.0
+offset_right = 844.0
+offset_bottom = 105.0
 theme_override_font_sizes/font_size = 16
-text = "PRESS LAMP AND CHANGE THE NUMBER 
-"
+text = "ẤN ĐÈN SAU ĐÓ TĂNG / GIẢM GÓC CHO PHÙ HỢP
+VỚI KHOẢNG GÓC TRAPDOOR NHẬN"
 horizontal_alignment = 1

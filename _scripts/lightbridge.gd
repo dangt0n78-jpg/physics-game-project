@@ -1,7 +1,6 @@
 @tool
 extends StaticBody2D
 
-@onready var color_rect: ColorRect = $ColorRect
 @onready var collision: CollisionShape2D = $CollisionShape2D
 @onready var label: Label = $Label
 
@@ -54,6 +53,10 @@ func set_bridge_active(active: bool) -> void:
 	if collision:
 		# disabled = false tức là BẬT va chạm, disabled = true là TẮT va chạm
 		collision.disabled = not active
-	if color_rect:
-		# Làm rõ bục khi bật va chạm, làm mờ đi khi tắt va chạm
-		color_rect.modulate.a = 1.0 if active else 0.35
+	
+	if $AnimatedSprite2D:
+		$AnimatedSprite2D.play("default")
+		if active:
+			$AnimatedSprite2D.frame = 0
+		else:
+			$AnimatedSprite2D.frame = 1

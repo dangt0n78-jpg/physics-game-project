@@ -1,7 +1,29 @@
 [gd_scene format=3 uid="uid://byf03aixhx7os"]
 
 [ext_resource type="Script" uid="uid://dljlfw30kodnj" path="res://_scripts/lightbridge.gd" id="1_jayox"]
-[ext_resource type="Texture2D" uid="uid://bw74t3a435gn1" path="res://_assets/Trapdoor.png" id="2_i0qts"]
+[ext_resource type="Texture2D" uid="uid://bl5kq1gxsjiid" path="res://_assets/trapdoorsheet.png" id="2_i0qts"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvt18"]
+atlas = ExtResource("2_i0qts")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74qwp"]
+atlas = ExtResource("2_i0qts")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3owqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvt18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74qwp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3owqy"]
 size = Vector2(279, 23)
@@ -10,12 +32,13 @@ size = Vector2(279, 23)
 collision_layer = 3
 script = ExtResource("1_jayox")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1015989072]
-position = Vector2(139.99998, 13)
-scale = Vector2(6.958333, 4.8125)
-texture = ExtResource("2_i0qts")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=181346800]
+position = Vector2(141, 15)
+scale = Vector2(8.734375, 3.28125)
+sprite_frames = SubResource("SpriteFrames_3owqy")
 
 [node name="Label" type="Label" parent="." unique_id=1929380239]
+offset_left = 14.0
 offset_right = 279.0
 offset_bottom = 23.0
 text = "90 - 100"

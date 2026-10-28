@@ -11,6 +11,7 @@ position = Vector2(0, 2)
 script = ExtResource("1_dk052")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=90733097]
+rotation = -1.5707964
 scale = Vector2(5, 5)
 texture = ExtResource("1_g6kcl")
 
@@ -18,8 +19,8 @@ texture = ExtResource("1_g6kcl")
 shape = SubResource("CircleShape2D_3owqy")
 
 [node name="timeleft" type="Label" parent="." unique_id=351654300]
-offset_left = -19.0
-offset_top = -24.0
+offset_left = -24.0
+offset_top = -71.0
 offset_right = 21.0
 offset_bottom = 21.0
 theme_override_font_sizes/font_size = 32
@@ -28,9 +29,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="degree" type="Label" parent="." unique_id=324679337]
-offset_left = -27.0
-offset_top = -24.0
-offset_right = 28.0
+offset_left = -78.0
+offset_top = -72.0
+offset_right = 74.0
 offset_bottom = 21.0
 theme_override_font_sizes/font_size = 32
 text = "85 - 95"

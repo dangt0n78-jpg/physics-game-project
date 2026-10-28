@@ -1592,18 +1592,20 @@ offset_top = 1.0
 offset_right = 327.0
 offset_bottom = 208.0
 theme_override_font_sizes/font_size = 32
-text = "A, D TO MOVE
-SPACEBAR TO JUMP"
+text = "WASD ĐỂ DI CHUYỂN /
+MŨI TÊN ĐỂ DI CHUYỂN
+SPACEBAR  ĐỂ NHẢY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="." unique_id=1067072287]
-offset_left = 807.0
-offset_top = 17.0
-offset_right = 1143.0
-offset_bottom = 150.0
-text = "CLICK THE LAMP
-
-Q/E TO INCREASE / DECREASE
-
-CLICKOUT OF THE LAMP AFTER YOU ADJUST"
+offset_left = 788.0
+offset_top = 19.0
+offset_right = 1606.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 16
+text = "ẤN VÀO ĐÈN
+DÙNG Q / E ĐỂ GIẢM / TĂNG GÓC CỦA 
+PHÂN CỰC
+SAU KHI CÓ GÓC MONG MUỐN ẤN CHUỘT 
+RA NGOÀI"
